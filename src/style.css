@@ -1,0 +1,132 @@
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+.bg-dark {
+    background-color:#303841;
+}
+
+.display-none
+{
+    display: none;
+}
+
+.red-button
+{
+    background-color: #f16b52;
+    padding: 5px;
+    color: white;
+    width: 150px;
+    text-decoration: none;
+}
+.red-button:hover {
+    text-decoration: none;
+    color:#303841;
+}
+
+.dashboard-header {
+    height:38px;
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+}
+.dashboard-header-data {
+    width: 100%;
+    display: inline-flex;
+    justify-content:flex-start;
+    flex-wrap: wrap;
+}
+
+.auth-form { 
+    max-width: 400px; 
+    margin:auto;
+}
+
+.selected {
+    background-color: #f16b52;
+    color: white;
+}
+.selected:hover{
+    background-color: #f16b52;
+    color: white;
+}
+
+.trainer-list{
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.meditation-container {
+    display: flex;
+    text-align: center;
+    margin-top: 20px;
+    flex-flow: column;
+    align-items: center;
+}
+
+.meditation-image {
+    margin-top: 20px;
+    height: 250px;
+    width: fit-content;
+    margin: auto;
+}
+
+.dashboard {
+    margin:auto 20px;
+}
+
+.dashboard-container {
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+}
+
+.all-convos {
+    width: 30%;
+    border: 1px solid #373737;
+    background-color:#e6ebf0;
+}
+
+.start-new-btn {
+    background-color:white;
+    text-decoration: none;
+    padding: 5px;
+    height: 45px;
+}
+.start-new-btn:hover {
+    text-decoration: none;
+    color:#303841;
+}
+
+.opened-convo {
+    border: 1px solid #373737;
+    width: 70%;
+}
+
+@media screen and (max-width: 600px) {
+        
+    .dashboard {
+        margin:auto 0px;
+    }
+
+    .all-convos {
+        display:none;
+    }
+    .opened-convo {
+        width: 100%;
+    }
+}
