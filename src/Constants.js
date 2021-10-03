@@ -1,6 +1,10 @@
 
 export default class Constants
 {
+    static get domain() {
+        return "@chatter.com";
+    }
+    
     static get dbTable()
     {
         return {

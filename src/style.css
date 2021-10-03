@@ -64,7 +64,7 @@
     color: white;
 }
 
-.trainer-list{
+.convo-list{
     width: 100%;
     display: inline-flex;
     justify-content: space-between;
@@ -115,6 +115,19 @@
 .opened-convo {
     border: 1px solid #373737;
     width: 70%;
+}
+
+.input-container {
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+}
+.input-container .input-field {
+    width: 85%;
+    padding: 5px;
+}
+.input-container .input-btn {
+    width: 15%;
 }
 
 @media screen and (max-width: 600px) {

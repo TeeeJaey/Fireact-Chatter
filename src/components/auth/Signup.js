@@ -1,10 +1,11 @@
-import React, { useRef, useState } from "react"
-import { Form, Button, Card, Alert } from "react-bootstrap"
-import { useAuth } from "../services/AuthContext"
-import { Link, useHistory } from "react-router-dom"
+import React, { useRef, useState } from "react";
+import { Form, Button, Card, Alert } from "react-bootstrap";
+import { useAuth } from "../../services/AuthContext";
+import { Link, useHistory } from "react-router-dom";
+import Constants from "../../Constants";
 
 export default function Signup() {
-  const emailRef = useRef();
+  const usernameRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const { signup } = useAuth();
@@ -23,7 +24,7 @@ export default function Signup() {
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value, type);
+      await signup(usernameRef.current.value + Constants.domain, passwordRef.current.value, type);
       history.push("/");
     } catch {
       setError("Failed to create an account");
@@ -45,9 +46,9 @@ export default function Signup() {
           {error && <Alert variant="danger">{error}</Alert>}
 
           <Form onSubmit={handleSubmit}>
-            <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
+            <Form.Group id="username">
+              <Form.Label>Username</Form.Label>
+              <Form.Control type="username" ref={usernameRef} required />
             </Form.Group>
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>

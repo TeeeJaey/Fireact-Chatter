@@ -1,10 +1,11 @@
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
-import { useAuth } from "../services/AuthContext"
+import { useAuth } from "../../services/AuthContext"
 import { Link, useHistory } from "react-router-dom"
+import Constants from "../../Constants";
 
 export default function Login() {
-  const emailRef = useRef()
+  const usernameRef = useRef()
   const passwordRef = useRef()
   const { login } = useAuth()
   const [error, setError] = useState("")
@@ -17,7 +18,7 @@ export default function Login() {
     try {
         setError('')
         setLoading(true) 
-        await login(emailRef.current.value, passwordRef.current.value)
+        await login(usernameRef.current.value + Constants.domain, passwordRef.current.value)
         setLoading(false)  
         history.push('/')
     } catch {
@@ -33,9 +34,9 @@ export default function Login() {
           <h2 className="text-center mb-4">Log In</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-            <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
+            <Form.Group id="username">
+              <Form.Label>UserName</Form.Label>
+              <Form.Control type="username" ref={usernameRef} required />
             </Form.Group>
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>

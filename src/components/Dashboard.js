@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Button, Alert } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaSignOutAlt, FaBars, FaCaretDown } from "react-icons/fa";
 
 import { useAuth } from "../services/AuthContext";
 import { useRequest } from "../services/RequestContext";
 import DashboardContent from "./DashboardContent";
 import Constants from "../Constants";
+import Dropdown from "./Dropdown";
 
 export default function Dashboard() {
   const [error, setError] = useState("");
@@ -29,6 +30,14 @@ export default function Dashboard() {
     }
   }
 
+  function selectDropdown(action) {
+    if(action === "Log Out")
+      return handleLogout();
+    if(action === "Add new Friend") {
+      
+    }
+  }
+
   let dashboardDisplay = 0;
   if(currentRequest && currentRequest.status !== Constants.requestStatus.active) {
     if(currentUser.type === Constants.userTypes.seeker)
@@ -47,10 +56,7 @@ export default function Dashboard() {
                 <strong>User:</strong> {currentUser.email}
               </span>
             </div>
-            <Button variant="link" onClick={handleLogout} className="red-button" disabled={dashboardDisplay===0}>
-              <span style={{margin:"0px 5px"}} >Log Out</span>
-              <FaSignOutAlt />
-            </Button>
+            <Dropdown label="Options" list={["Add new Friend", "Log Out"]} select={(action)=>selectDropdown(action)} />
           </div>
                 {error && <Alert variant="danger">{error}</Alert>}
         </div>
