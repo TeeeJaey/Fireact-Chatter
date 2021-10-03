@@ -1,32 +1,24 @@
 import React, { useState } from "react";
 import { Button, Alert } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { FaSignOutAlt, FaBars, FaCaretDown } from "react-icons/fa";
 
+import { useOpenConvo } from "../services/OpenConvoContext";
 import { useAuth } from "../services/AuthContext";
-import { useRequest } from "../services/RequestContext";
-import DashboardContent from "./DashboardContent";
 import Constants from "../Constants";
 import Dropdown from "./Dropdown";
+import AllConvos from "./AllConvos";
+import OpenedConvo from "./OpenedConvo";
 
 export default function Dashboard() {
-  const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
-  const { currentRequest } = useRequest();
   const history = useHistory();
-  
-  let showStop = false;
-  if(currentUser.type === Constants.userTypes.trainer)
-    showStop = true;
-  
-  async function handleLogout() {
-    setError("");
 
+  async function handleLogout() {
     try {
       await logout();
       history.push("/login");
     } catch {
-      setError("Failed to log out");
+      console.error("Failed to log out");
     }
   }
 
@@ -36,15 +28,6 @@ export default function Dashboard() {
     if(action === "Add new Friend") {
       
     }
-  }
-
-  let dashboardDisplay = 0;
-  if(currentRequest && currentRequest.status !== Constants.requestStatus.active) {
-    if(currentUser.type === Constants.userTypes.seeker)
-        dashboardDisplay = 1;
-    else 
-      dashboardDisplay = 2;
-     
   }
 
   return (
@@ -58,11 +41,12 @@ export default function Dashboard() {
             </div>
             <Dropdown label="Options" list={["Add new Friend", "Log Out"]} select={(action)=>selectDropdown(action)} />
           </div>
-                {error && <Alert variant="danger">{error}</Alert>}
         </div>
 
-        <DashboardContent/>
-      
+        <div className="card-body dashboard-container">
+            <div className="all-convos"> <AllConvos/> </div>
+            <div className="opened-convo"> <OpenedConvo/> </div>
+        </div>
       </div>
   );
 }
