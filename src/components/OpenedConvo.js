@@ -7,7 +7,7 @@ import { useRequest } from "../services/OpenConvoContext";
 export default function OpenedConvo(props) {
     
     return (
-        <div style={{display:"flex",justifyContent:"center", marginTop:"100px"}}>
+        <div style={{display:"flex",justifyContent:"center", marginTop:"100px", fontSize:"20px"}}>
             Open or Start a new Conversation
         </div>
     );

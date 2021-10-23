@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaSignOutAlt, FaBars, FaCaretDown } from "react-icons/fa";
+import { BsGear } from "react-icons/bs";
 
 export default function Dropdown(props) {
     const [showDropdown, setShowDropdown] = useState("none");
@@ -20,12 +21,14 @@ export default function Dropdown(props) {
                                     <span className="ellipsis"> {option} </span> 
                                 </a>);
     });
-
+    
 
     return <div className="dropdown" style={{marginRight:"5px"}} > 
-                <button className="btn btn-danger dropdown-toggle" type="button" onClick={toggleDropdown} >
-                    {props.label}
+                <button className="btn btn-danger dropdown-toggle " type="button" onClick={toggleDropdown} >
+                    <span className="options-label"> {props.label} </span>
+                    <BsGear className="options-icon"/>
                 </button>
+                
                 <div className="dropdown-menu dropdown-menu-right" style={{ cursor:"pointer" , display: showDropdown}} >
                     {dropddownListRender}
                 </div>

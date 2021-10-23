@@ -15,7 +15,7 @@ export default function AllConvos(props) {
         <ListGroup style={{maxHeight: "100%"}} >
             <div className="input-container">
                 <input className="input-field" placeholder="Search in friends" />
-                <button className="input-btn btn-info" >
+                <button className="input-btn btn-danger" >
                     <FaSearch />
                 </button>
             </div>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Alert } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
-import { useOpenConvo } from "../services/OpenConvoContext";
 import { useAuth } from "../services/AuthContext";
 import Constants from "../Constants";
 import Dropdown from "./Dropdown";
@@ -35,11 +34,13 @@ export default function Dashboard() {
         <div className="card-header">
           <div className="dashboard-header" >
             <div className="dashboard-header-data" >
+              <img src={require('../images/profile.png')} style={{width:"35px",height:"35px",marginRight:"10px"}} />
+                
               <span style={{margin: "auto 0px", marginRight:"15px"}}>
-                <strong>User:</strong> {currentUser.email}
+                <strong> {currentUser.email} </strong> 
               </span>
             </div>
-            <Dropdown label="Options" list={["Add new Friend", "Log Out"]} select={(action)=>selectDropdown(action)} />
+            <Dropdown label="Options" list={["Add new Friend", "Pending Friend requests", "Log Out"]} select={(action)=>selectDropdown(action)} />
           </div>
         </div>
 
