@@ -17,11 +17,11 @@ function App() {
         <Router>
           <AuthProvider>
                 <Switch>
+                  <Route path="/login" component={Login} />
+                  <Route path="/signup" component={Signup} />
                   <OpenConvoProvider>
                       <PrivateRoute exact path="/" component={Dashboard} />
                   </OpenConvoProvider>
-                  <Route path="/signup" component={Signup} />
-                  <Route path="/login" component={Login} />
                 </Switch>
           </AuthProvider>
         </Router>

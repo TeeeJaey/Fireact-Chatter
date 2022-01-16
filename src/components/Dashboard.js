@@ -6,7 +6,7 @@ import { useAuth } from "../services/AuthContext";
 import Constants from "../Constants";
 import Dropdown from "./Dropdown";
 import AllConvos from "./AllConvos";
-import OpenedConvo from "./OpenedConvo";
+import OpenedConvo from "./convo/OpenedConvo";
 
 export default function Dashboard() {
   const { currentUser, logout } = useAuth();

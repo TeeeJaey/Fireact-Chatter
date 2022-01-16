@@ -8,25 +8,39 @@ import { useOpenConvo } from "../services/OpenConvoContext";
 
 export default function AllConvos(props) {
     const { currentConvo, openConvo } = useOpenConvo();
+    const [ search, setSearch ] = useState("");
 
-    let convos = ['friend 1', 'friend 2','friend 1', 'friend 2','friend 1', 'friend 2','friend 1', 'friend 2','friend 1', 'friend 2','friend 1', 'friend 2','friend 1', 'friend 2','friend 1', 'friend 2','friend 1', 'friend 2'];
+    let orgConvos = ['friend 1', 'friend 2','friend 1', 'friend 2','friend 1', 'friend 2','friend 1', 'friend 2','friend 1', 'friend 2','friend 1', 'friend 2','friend 1', 'friend 2','friend 1', 'friend 2','friend 1', 'friend 2'];
+    let convos = [...orgConvos];
+    let searchTimeout = undefined; 
+
+    useEffect(()=>{
+        if(searchTimeout) 
+            clearTimeout(searchTimeout);
+        
+        searchTimeout = setTimeout(() => {
+            convos = [...orgConvos];
+            convos = convos.filter(x => x.includes(search));
+        },500);
+
+    }, [search]);
 
     return (
         <ListGroup style={{maxHeight: "100%"}} >
             <div className="input-container">
-                <input className="input-field" placeholder="Search in friends" />
+                <input className="input-field" placeholder="Search in friends" onChange={e => setSearch(e.target.value)} />
                 <button className="input-btn btn-danger" >
                     <FaSearch />
                 </button>
             </div>
             <div style={{maxHeight: "100%",overflow: "auto"}}>
-                {convos.map(convo => {
+                {convos.map( (convo,index) => {
                     let selectedClass = "";
                     if(convo === selectedClass)
                         selectedClass = "selected";
                     
                     return (
-                        <ListGroup.Item key={convo} className={"convo-list "+selectedClass} style={{cursor:"pointer"}} onClick={(convo) => openConvo(convo)}> 
+                        <ListGroup.Item key={index} className={"convo-list "+selectedClass} style={{cursor:"pointer"}} onClick={(convo) => openConvo(convo)}> 
                             <span style={{margin:"auto 0"}} > {convo} </span>
                         </ListGroup.Item>
                     );
